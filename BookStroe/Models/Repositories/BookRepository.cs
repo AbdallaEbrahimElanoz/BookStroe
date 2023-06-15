@@ -1,29 +1,54 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace BookStroe.Models.Repositories
 {
 
     public class BookRepository : IBookStoreRepository<Book>
     {
+        List<Book> books;
+        public BookRepository()
+        {
+            books = new List<Book>()
+            {
+                new Book() {
+                Id = 1, title="C#" ,Description="lrean C#"
+                },
+                 new Book() {
+                Id = 1, title="f#" ,Description="lrean f#"
+                },
+                  new Book() {
+                Id = 1, title="C" ,Description="lrean C"
+                },
+                   new Book() {
+                Id = 1, title="C++" ,Description="lrean C++"
+                },
+                    new Book() {
+                Id = 1, title="Css" ,Description="lrean Css"
+                },
+            };
+        }
         public void Add(Book entity)
         {
-            throw new NotImplementedException();
+            books.Add(entity);
         }
 
         public void DeleteById(int id)
         {
-            throw new NotImplementedException();
+            var book = books.SingleOrDefault(x => x.Id == id);  
+            books.Remove(book);
         }
 
         public Book FindById(int id)
         {
-            throw new NotImplementedException();
+            var book = books.SingleOrDefault(x => x.Id == id);
+            return book;
         }
 
         public IList<Book> List()
         {
-            throw new NotImplementedException();
+            return books;
         }
 
         public void UpdateById(Book entity)
@@ -31,9 +56,13 @@ namespace BookStroe.Models.Repositories
             throw new NotImplementedException();
         }
 
-        public void UpdateById(Book entity, int id)
+        public void UpdateById(Book newBook, int id)
         {
-            throw new NotImplementedException();
+            var book = books.SingleOrDefault(x => x.Id == id);
+            book.title =newBook.title;
+            book.Description=newBook.Description;
+            book.Author = newBook.Author;
+
         }
     }
 }
