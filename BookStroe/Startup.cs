@@ -1,3 +1,5 @@
+using BookStroe.Models;
+using BookStroe.Models.Repositories;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
@@ -24,6 +26,9 @@ namespace BookStroe
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddMvc();
+            services.AddSingleton<IBookStoreRepository<Author>, AuthorRepository>();
+            services.AddSingleton<IBookStoreRepository<Book>, BookRepository>();
             services.Configure<CookiePolicyOptions>(options =>
             {
                 // This lambda determines whether user consent for non-essential cookies is needed for a given request.
