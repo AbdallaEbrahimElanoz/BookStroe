@@ -33,19 +33,20 @@ namespace BookStroe.Models.Repositories
         {
             books.Add(entity);
         }
-
-        public void DeleteById(int id)
-        {
-            var book = books.SingleOrDefault(x => x.Id == id);  
-            books.Remove(book);
-        }
-
         public Book FindById(int id)
         {
             var book = books.SingleOrDefault(x => x.Id == id);
             return book;
         }
 
+
+        public void DeleteById(int id)
+        {
+            var book = FindById(id);  
+            books.Remove(book);
+        }
+
+        
         public IList<Book> List()
         {
             return books;
@@ -58,7 +59,7 @@ namespace BookStroe.Models.Repositories
 
         public void UpdateById(Book newBook, int id)
         {
-            var book = books.SingleOrDefault(x => x.Id == id);
+            var book = FindById(id); 
             book.title =newBook.title;
             book.Description=newBook.Description;
             book.Author = newBook.Author;
