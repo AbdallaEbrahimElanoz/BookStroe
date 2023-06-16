@@ -25,7 +25,8 @@ namespace BookStroe.Controllers
         // GET: AuthorController/Details/5
         public ActionResult Details(int id)
         {
-            return View();
+            var author =authorRepository.FindById(id);
+            return View(author);
         }
 
         // GET: AuthorController/Create

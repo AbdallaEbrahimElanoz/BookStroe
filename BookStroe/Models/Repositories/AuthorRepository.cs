@@ -16,15 +16,15 @@ namespace BookStroe.Models.Repositories
                 },
                  new Author()
                 {
-                    Id = 1,FullName="Abdullah"
+                    Id = 2,FullName="Abdullah"
                 },
                   new Author()
                 {
-                    Id = 1,FullName="Abdullah"
+                    Id = 3,FullName="Abdullah"
                 },
                    new Author()
                 {
-                    Id = 1,FullName="Abdullah"
+                    Id = 4,FullName="Abdullah"
                 },
             };
 
