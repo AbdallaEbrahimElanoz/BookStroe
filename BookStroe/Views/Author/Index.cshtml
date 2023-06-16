@@ -1,7 +1,9 @@
-﻿@model IEnumerable<BookStroe.Models.Author>
+﻿
+@model IEnumerable<BookStroe.Models.Author>
 
 @{
-    Layout = null;
+    
+   
 }
 
 <!DOCTYPE html>
@@ -13,7 +15,7 @@
 </head>
 <body>
 <p>
-    <a asp-action="Create">Create New</a>
+        <a asp-action="Create" class="btn btn-primary">Create New</a>
 </p>
 <table class="table">
     <thead>
@@ -37,9 +39,9 @@
                 @Html.DisplayFor(modelItem => item.FullName)
             </td>
             <td>
-                @Html.ActionLink("Edit", "Edit", new {  id=item.Id  }) |
-                        @Html.ActionLink("Details", "Details", new {  id=item.Id   }) |
-                        @Html.ActionLink("Delete", "Delete", new {  id=item.Id   })
+                        @Html.ActionLink("Edit", "Edit", new {   id=item.Id  } , new {@class= "btn btn-warning"}) |
+                        @Html.ActionLink("Details", "Details", new {  id=item.Id   } , new {@class= "btn btn-info"}) |
+                        @Html.ActionLink("Delete", "Delete", new {  id=item.Id   } , new {@class= "btn btn-danger"})
             </td>
         </tr>
 }

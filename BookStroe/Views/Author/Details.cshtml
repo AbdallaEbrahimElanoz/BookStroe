@@ -1,7 +1,9 @@
-﻿@model BookStroe.Models.Author
+﻿
+@model BookStroe.Models.Author
 
 @{
-    Layout = null;
+   
+   
 }
 
 <!DOCTYPE html>
@@ -33,7 +35,7 @@
 </div>
 <div>
     @Html.ActionLink("Edit", "Edit", new { /* id = Model.PrimaryKey */ }) |
-    <a asp-action="Index">Back to List</a>
+        <a asp-action="Index" class="btn btn-primary">Back to List</a>
 </div>
 </body>
 </html>
