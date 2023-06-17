@@ -65,5 +65,10 @@ namespace BookStroe.Models.Repositories
             book.Author = newBook.Author;
 
         }
+
+        public void Update(int id, Author author)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

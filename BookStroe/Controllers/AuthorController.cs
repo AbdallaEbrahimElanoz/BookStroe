@@ -54,16 +54,18 @@ namespace BookStroe.Controllers
         // GET: AuthorController/Edit/5
         public ActionResult Edit(int id)
         {
-            return View();
+            var author=authorRepository.FindById(id);
+            return View(author);
         }
 
         // POST: AuthorController/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit(int id, IFormCollection collection)
+        public ActionResult Edit(int id, Author author)
         {
             try
             {
+                authorRepository.Update(id, author);    
                 return RedirectToAction(nameof(Index));
             }
             catch

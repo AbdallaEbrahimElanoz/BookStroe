@@ -53,15 +53,20 @@ namespace BookStroe.Models.Repositories
             return authors;
         }
 
+        public void Update(int id, Author newAuthor)
+        {
+            var author = FindById(id);
+            author.FullName = newAuthor.FullName;
+        }
+
         public void UpdateById(Author entity)
         {
             throw new NotImplementedException();
         }
 
-        public void UpdateById(Author newAuthor, int id)
+        public void UpdateById(Author entity, int id)
         {
-            var author = FindById(id);
-            author.FullName = newAuthor.FullName;
+            throw new NotImplementedException();
         }
     }
 }

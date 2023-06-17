@@ -11,5 +11,6 @@ namespace BookStroe.Models.Repositories
         void UpdateById(TEntity entity);
         void UpdateById(TEntity entity, int id);
         void Add(TEntity entity);
+        void Update(int id, Author author);
     }
 }
