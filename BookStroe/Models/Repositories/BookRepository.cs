@@ -16,16 +16,16 @@ namespace BookStroe.Models.Repositories
                 Id = 1, title="C#" ,Description="lrean C#"
                 },
                  new Book() {
-                Id = 1, title="f#" ,Description="lrean f#"
+                Id = 2, title="f#" ,Description="lrean f#"
                 },
                   new Book() {
-                Id = 1, title="C" ,Description="lrean C"
+                Id = 3, title="C" ,Description="lrean C"
                 },
                    new Book() {
-                Id = 1, title="C++" ,Description="lrean C++"
+                Id = 4, title="C++" ,Description="lrean C++"
                 },
                     new Book() {
-                Id = 1, title="Css" ,Description="lrean Css"
+                Id = 5, title="Css" ,Description="lrean Css"
                 },
             };
         }
