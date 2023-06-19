@@ -104,7 +104,8 @@ namespace BookStore.Controllers
                 Title = book.title,
                 Description = book.Description,
                 AuthorId = book.Author.Id,
-                Authors =authorRepository.List().ToList()   
+                Authors =authorRepository.List().ToList(),
+                ImageUrl = book.ImageUrl,
             };
             return View(viewModel);
         }
