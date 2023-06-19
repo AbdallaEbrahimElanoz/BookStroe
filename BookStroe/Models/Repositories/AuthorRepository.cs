@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 
-namespace BookStroe.Models.Repositories
+namespace BookStore.Models.Repositories
 {
     public class AuthorRepository : IBookStoreRepository<Author>
     {
@@ -12,40 +12,46 @@ namespace BookStroe.Models.Repositories
             {
                 new Author()
                 {
-                    Id = 1,FullName="Abdullah"
+                    Id = 1,FullName="Abdullah e"
                 },
                  new Author()
                 {
-                    Id = 2,FullName="Abdullah"
+                    Id = 2,FullName="Abdullah a"
                 },
                   new Author()
                 {
-                    Id = 3,FullName="Abdullah"
+                    Id = 3,FullName="Abdullah c"
                 },
                    new Author()
                 {
-                    Id = 4,FullName="Abdullah"
+                    Id = 4,FullName="Abdullah d"
                 },
             };
 
 
 
         }
-        public void Add(Author entity)
+        public void Update(Author entity)
         {
             authors.Add(entity);    
         }
 
-        public void DeleteById(int id)
+        public void Delete(int id)
         {
-            var author = FindById(id);
+            var author = Find(id);
             authors.Remove(author);
         }
 
-        public Author FindById(int id)
+ 
+        public Author Find(int id)
         {
            var author=authors.SingleOrDefault(x => x.Id == id);
             return author;
+        }
+
+        public Author Find(string authorId)
+        {
+            throw new NotImplementedException();
         }
 
         public IList<Author> List()
@@ -55,16 +61,21 @@ namespace BookStroe.Models.Repositories
 
         public void Update(int id, Author newAuthor)
         {
-            var author = FindById(id);
+            var author = Find(id);
             author.FullName = newAuthor.FullName;
         }
 
-        public void UpdateById(Author entity)
+        public void Update(Author entity, int bookId)
         {
             throw new NotImplementedException();
         }
 
-        public void UpdateById(Author entity, int id)
+        public void Update(int bookId, Book book)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void Update(Book book)
         {
             throw new NotImplementedException();
         }

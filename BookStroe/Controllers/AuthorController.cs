@@ -1,9 +1,9 @@
-﻿using BookStroe.Models;
-using BookStroe.Models.Repositories;
+﻿using BookStore.Models;
+using BookStore.Models.Repositories;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
-namespace BookStroe.Controllers
+namespace BookStore.Controllers
 {
     public class AuthorController : Controller
     {
@@ -25,7 +25,7 @@ namespace BookStroe.Controllers
         // GET: AuthorController/Details/5
         public ActionResult Details(int id)
         {
-            var author =authorRepository.FindById(id);
+            var author =authorRepository.Find(id);
             return View(author);
         }
 
@@ -42,7 +42,7 @@ namespace BookStroe.Controllers
         {
             try
             {
-                authorRepository.Add(author);
+                authorRepository.Update(author);
                 return RedirectToAction(nameof(Index));
             }
             catch
@@ -54,7 +54,7 @@ namespace BookStroe.Controllers
         // GET: AuthorController/Edit/5
         public ActionResult Edit(int id)
         {
-            var author=authorRepository.FindById(id);
+            var author=authorRepository.Find(id);
             return View(author);
         }
 
@@ -77,7 +77,7 @@ namespace BookStroe.Controllers
         // GET: AuthorController/Delete/5
         public ActionResult Delete(int id)
         {
-            var author =authorRepository.FindById(id);  
+            var author =authorRepository.Find(id);  
             return View(author);
         }
 
@@ -88,7 +88,7 @@ namespace BookStroe.Controllers
         {
             try
             {
-                authorRepository.DeleteById(id);
+                authorRepository.Delete(id);
                 return RedirectToAction(nameof(Index));
             }
             catch

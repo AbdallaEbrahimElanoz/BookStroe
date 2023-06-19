@@ -1,16 +1,18 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 
-namespace BookStroe.Models.Repositories
+namespace BookStore.Models.Repositories
 {
     public interface IBookStoreRepository<TEntity> //TEntity Generic implament 
     {
         IList<TEntity> List();
-        TEntity FindById(int id);
-        void DeleteById(int id);
-        void UpdateById(TEntity entity);
-        void UpdateById(TEntity entity, int id);
-        void Add(TEntity entity);
+        TEntity Find(int id);
+        void Delete(int id);
+        void Update(TEntity entity, int bookId);
         void Update(int id, Author author);
+        Author Find(string authorId);
+        void Update(int bookId, Book book);
+        void Update(Book book);
+        void Update(Author author);
     }
 }

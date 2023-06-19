@@ -1,5 +1,5 @@
-using BookStroe.Models;
-using BookStroe.Models.Repositories;
+using BookStore.Models;
+using BookStore.Models.Repositories;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
@@ -12,7 +12,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace BookStroe
+namespace BookStore
 {
     public class Startup
     {
