@@ -80,12 +80,22 @@ namespace BookStore.Models.Repositories
             throw new NotImplementedException();
         }
 
-        public void Update(Book book)
+        public void ViewModel(Book book)
         {
             throw new NotImplementedException();
         }
 
         public void Update(Author author)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void viewModel(Book book)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void Update(Book book)
         {
             throw new NotImplementedException();
         }

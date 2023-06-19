@@ -117,14 +117,33 @@ namespace BookStore.Controllers
         {
             try
             {
+                string fileName = string.Empty;
+                if (viewModel.File != null)
+                {
+
+                    string uploads = Path.Combine(hosting.WebRootPath, "uploads");
+                    fileName = viewModel.File.FileName;
+                    string FullPath = Path.Combine(uploads, fileName);
+                    //Delet thee old file
+                    string oldFileName = bookRepository.Find(viewModel.BookId).ImageUrl;
+                    string FullOldPath =Path.Combine(uploads, oldFileName); 
+                    if(FullPath != FullOldPath)
+                    {
+                        System.IO.File.Delete(FullOldPath);
+                        //Save the new file
+                        viewModel.File.CopyTo(new FileStream(FullPath, FileMode.Create));
+                    }
+                   
+                }
                 var author = authorRepository.Find(viewModel.AuthorId);
                 Book book = new Book
                 {
                     title = viewModel.Title,
                     Description = viewModel.Description,
-                    Author = author
+                    Author = author,
+                    ImageUrl = fileName
                 };
-                bookRepository.Update(book);
+                bookRepository.Update(viewModel.BookId, book);
                 return RedirectToAction(nameof(Index));
             }
             catch
