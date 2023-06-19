@@ -1,9 +1,11 @@
 ﻿using BookStore.Models;
 using BookStore.Models.Repositories;
 using BookStore.ViewModels;
+using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 
 namespace BookStore.Controllers
@@ -12,12 +14,14 @@ namespace BookStore.Controllers
     {
         private IBookStoreRepository<Book> bookRepository;
         private IBookStoreRepository<Author> authorRepository;
+        private readonly IHostingEnvironment hosting;
 
-        public BookController(IBookStoreRepository<Book> bookRepository, IBookStoreRepository<Author> authorRepository)
+        public BookController(IBookStoreRepository<Book> bookRepository, IBookStoreRepository<Author> authorRepository, IHostingEnvironment hosting)
         {
 
             this.bookRepository = bookRepository;
             this.authorRepository = authorRepository;
+            this.hosting = hosting;
         }
         // GET: BookController
         public ActionResult Index()
@@ -50,6 +54,15 @@ namespace BookStore.Controllers
                 try
 
                 {
+                    string fileName = string.Empty;
+                    if (model.File != null) {
+
+                        string uploads = Path.Combine(hosting.WebRootPath, "uploads");
+                        fileName = model.File.FileName;
+                        string FullPath =Path.Combine(uploads, fileName);
+                        model.File.CopyTo(new FileStream(FullPath, FileMode.Create));
+                    }
+
                     if (model.AuthorId == -1)
                     {
 
@@ -64,6 +77,7 @@ namespace BookStore.Controllers
                         title = model.Title,
                         Description = model.Description,
                         Author = author,
+                        ImageUrl=fileName
                     };
                     bookRepository.Add(book);
                     return RedirectToAction(nameof(Index));
