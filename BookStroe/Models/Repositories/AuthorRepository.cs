@@ -31,7 +31,7 @@ namespace BookStore.Models.Repositories
 
 
         }
-        public void Update(Author entity)
+        public void Add(Author entity)
         {
             authors.Add(entity);    
         }
@@ -76,6 +76,11 @@ namespace BookStore.Models.Repositories
         }
 
         public void Update(Book book)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void Update(Author author)
         {
             throw new NotImplementedException();
         }

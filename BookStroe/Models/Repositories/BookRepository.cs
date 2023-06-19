@@ -29,8 +29,9 @@ namespace BookStore.Models.Repositories
                 },
             };
         }
-        public void Update(Book entity)
+        public void Add(Book entity)
         {
+            entity.Id = books.Max(x => x.Id) + 1;
             books.Add(entity);
         }
         public Book Find(int id)
@@ -82,6 +83,11 @@ namespace BookStore.Models.Repositories
         }
 
         public void Update(Author author)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void Update(Book book)
         {
             throw new NotImplementedException();
         }
