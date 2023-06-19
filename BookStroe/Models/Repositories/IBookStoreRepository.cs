@@ -14,5 +14,6 @@ namespace BookStore.Models.Repositories
         void Update(int bookId, Book book);
         void Update(Book book);
         void Update(Author author);
+        void Add(Book book);
     }
 }

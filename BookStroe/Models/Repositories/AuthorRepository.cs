@@ -36,6 +36,11 @@ namespace BookStore.Models.Repositories
             authors.Add(entity);    
         }
 
+        public void Add(Book book)
+        {
+            throw new NotImplementedException();
+        }
+
         public void Delete(int id)
         {
             var author = Find(id);
