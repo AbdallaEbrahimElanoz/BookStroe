@@ -3,6 +3,7 @@ using BookStore.Models.Repositories;
 using BookStore.ViewModels;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using System.Collections.Generic;
 using System.Linq;
 
 namespace BookStore.Controllers
@@ -37,7 +38,7 @@ namespace BookStore.Controllers
         {
             var model = new BookAuthorViewModel
             {
-                Authors = authorRepository.List().ToList()
+                Authors = FillSelectList()
             };
             return View(model);
         }
@@ -48,7 +49,17 @@ namespace BookStore.Controllers
         public ActionResult Create(BookAuthorViewModel model)
         {
             try
+
             {
+                if(model.AuthorId == -1) {
+
+                    ViewBag.Message = "Please Select an author from the list";
+                    var vmodel = new BookAuthorViewModel
+                    {
+                        Authors = FillSelectList()
+                    };
+                    return View(vmodel); 
+                }
                 var author = authorRepository.Find(model.AuthorId);
                 Book book = new Book
                 {
@@ -124,6 +135,13 @@ namespace BookStore.Controllers
             {
                 return View();
             }
+        }
+
+        List<Author> FillSelectList()
+        {
+            var authors = authorRepository.List().ToList();
+            authors.Insert(0, new Author { Id = -1, FullName = "---- Please Select an author" });
+            return authors;
         }
     }
 }
