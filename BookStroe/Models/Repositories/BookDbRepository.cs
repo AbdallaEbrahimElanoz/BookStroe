@@ -51,7 +51,14 @@ namespace BookStroe.Models.Repositories
 
 
         }
-
+        public List<Book> Search(string term)
+        {
+            var result =db.Books.Include(a =>a.Author)
+               .Where(b=>b.title.Contains(term) 
+                || b.Description.Contains(term)
+                || b.Author.FullName.Contains(term)).ToList();
+            return result;
+        }
      
     }
 }

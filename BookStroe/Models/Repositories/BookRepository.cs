@@ -105,5 +105,10 @@ namespace BookStore.Models.Repositories
         {
             throw new NotImplementedException();
         }
+
+        public List<Book> Search(string term)
+        {
+            return books.Where(a => a.title.Contains(term)).ToList();
+        }
     }
 }

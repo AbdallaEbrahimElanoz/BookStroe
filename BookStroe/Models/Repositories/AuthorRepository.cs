@@ -99,5 +99,10 @@ namespace BookStore.Models.Repositories
         {
             throw new NotImplementedException();
         }
+
+        public List<Author> Search(string term)
+        {
+            return authors.Where(a=>a.FullName.Contains(term)).ToList();
+        }
     }
 }

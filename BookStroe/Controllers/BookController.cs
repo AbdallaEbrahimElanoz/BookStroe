@@ -112,24 +112,7 @@ namespace BookStore.Controllers
         {
             try
             {
-                string fileName = string.Empty;
-                if (viewModel.File != null)
-                {
-
-                    string uploads = Path.Combine(hosting.WebRootPath, "uploads");
-                    fileName = viewModel.File.FileName;
-                    string FullPath = Path.Combine(uploads, fileName);
-                    //Delet thee old file
-                    string oldFileName = viewModel.ImageUrl;
-                    string FullOldPath =Path.Combine(uploads, oldFileName); 
-                    if(FullPath != FullOldPath)
-                    {
-                        System.IO.File.Delete(FullOldPath);
-                        //Save the new file
-                        viewModel.File.CopyTo(new FileStream(FullPath, FileMode.Create));
-                    }
-                   
-                }
+                string fileName = UploadFile(viewModel.File,viewModel.ImageUrl);
                 var author = authorRepository.Find(viewModel.AuthorId);
                 Book book = new Book
                 {
@@ -198,5 +181,33 @@ namespace BookStore.Controllers
             }
             return null;
         }
+        string UploadFile(IFormFile file, String imgUrl)
+        {
+            if (file != null)
+            {
+
+                string uploads = Path.Combine(hosting.WebRootPath, "uploads");
+                string newPath = Path.Combine(uploads, file.FileName);            
+                string OldPath = Path.Combine(uploads, imgUrl);
+
+                if (OldPath != newPath)
+                {
+                    System.IO.File.Delete(OldPath);
+                    //Save the new file
+                    file.CopyTo(new FileStream(newPath, FileMode.Create));
+                }
+                return file.FileName;
+
+            }
+            return imgUrl;
+        }
+
+        public ActionResult Search(string term)
+        {
+            var result = bookRepository.Search(term);
+
+            return View("Index", result);
+        }
+
     }
 }

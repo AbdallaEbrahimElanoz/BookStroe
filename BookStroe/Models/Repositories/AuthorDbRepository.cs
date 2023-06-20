@@ -48,12 +48,20 @@ namespace BookStroe.Models.Repositories
             return db.Authors.ToList();
         }
 
+        public List<Author> Search(string term)
+        {
+            return db.Authors.Where(a => a.FullName.Contains(term)).ToList();
+        }
+
         public void Update(int id, Author newAuthor)
         {
             db.Update(newAuthor);
             db.SaveChanges();
         }
 
-       
+        List<Author> IBookStoreRepository<Author>.Search(string term)
+        {
+            throw new NotImplementedException();
+        }
     }
 }
