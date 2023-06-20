@@ -1,10 +1,12 @@
 using BookStore.Models;
 using BookStore.Models.Repositories;
+using BookStroe.Models;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using System;
@@ -29,6 +31,11 @@ namespace BookStore
            // services.AddMvc();
             services.AddSingleton<IBookStoreRepository<Author>, AuthorRepository>();
             services.AddSingleton<IBookStoreRepository<Book>, BookRepository>();
+            services.AddDbContext<BookstoreDbContext>(options =>
+            {
+                options.UseSqlServer(Configuration.GetConnectionString("sqlCon"));
+            }
+            )
             services.Configure<CookiePolicyOptions>(options =>
             {
                 // This lambda determines whether user consent for non-essential cookies is needed for a given request.
