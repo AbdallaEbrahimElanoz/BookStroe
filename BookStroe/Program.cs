@@ -1,6 +1,9 @@
-﻿using Microsoft.AspNetCore;
+﻿using BookStroe.Models;
+using Microsoft.AspNetCore;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using System;
 using System.Collections.Generic;
@@ -14,7 +17,18 @@ namespace BookStore
     {
         public static void Main(string[] args)
         {
-            CreateWebHostBuilder(args).Build().Run();
+            var WebHost = CreateWebHostBuilder(args).Build();
+            RunMigrations(WebHost);
+                WebHost.Run();
+        }
+
+        private static void RunMigrations(IWebHost webHost)
+        {
+            using(var scope =webHost.Services.CreateScope())
+            {
+                var db =scope.ServiceProvider.GetRequiredService<BookstoreDbContext>();
+                db.Database.Migrate();
+            }
         }
 
         public static IWebHostBuilder CreateWebHostBuilder(string[] args) =>
