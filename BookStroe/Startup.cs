@@ -65,8 +65,10 @@ namespace BookStore
             app.UseStaticFiles();
             app.UseCookiePolicy();
 
-            app.UseMvc();
-            app.UseMvcWithDefaultRoute();
+            app.UseMvc(route => {
+                route.MapRoute("default", "{controller=Book}/{action=Index}/{id?}");
+            });
+
         }
     }
 }

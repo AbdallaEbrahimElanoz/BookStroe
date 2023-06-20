@@ -4,6 +4,7 @@ using BookStore.ViewModels;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -125,7 +126,7 @@ namespace BookStore.Controllers
                     fileName = viewModel.File.FileName;
                     string FullPath = Path.Combine(uploads, fileName);
                     //Delet thee old file
-                    string oldFileName = bookRepository.Find(viewModel.BookId).ImageUrl;
+                    string oldFileName = viewModel.ImageUrl;
                     string FullOldPath =Path.Combine(uploads, oldFileName); 
                     if(FullPath != FullOldPath)
                     {
@@ -138,6 +139,7 @@ namespace BookStore.Controllers
                 var author = authorRepository.Find(viewModel.AuthorId);
                 Book book = new Book
                 {
+                    Id =viewModel.BookId,
                     title = viewModel.Title,
                     Description = viewModel.Description,
                     Author = author,
@@ -146,7 +148,7 @@ namespace BookStore.Controllers
                 bookRepository.Update(viewModel.BookId, book);
                 return RedirectToAction(nameof(Index));
             }
-            catch
+            catch (Exception ex)
             {
                 return View();
             }
