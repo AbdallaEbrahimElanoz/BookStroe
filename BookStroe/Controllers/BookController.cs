@@ -55,14 +55,8 @@ namespace BookStore.Controllers
                 try
 
                 {
-                    string fileName = string.Empty;
-                    if (model.File != null) {
-
-                        string uploads = Path.Combine(hosting.WebRootPath, "uploads");
-                        fileName = model.File.FileName;
-                        string FullPath =Path.Combine(uploads, fileName);
-                        model.File.CopyTo(new FileStream(FullPath, FileMode.Create));
-                    }
+                    string fileName = UploadFile(model.File) ?? string.Empty;
+                   
 
                     if (model.AuthorId == -1)
                     {
@@ -191,6 +185,18 @@ namespace BookStore.Controllers
                 Authors = FillSelectList()
             };
             return vmodel;
+        }
+        string UploadFile(IFormFile file)
+        {
+            if (file != null)
+            {
+
+                string uploads = Path.Combine(hosting.WebRootPath, "uploads");
+                 string FullPath = Path.Combine(uploads,file.FileName);
+                file.CopyTo(new FileStream(FullPath, FileMode.Create));
+                return file.FileName;
+            }
+            return null;
         }
     }
 }
