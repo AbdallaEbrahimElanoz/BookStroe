@@ -42,7 +42,7 @@ namespace BookStore.Controllers
         {
             try
             {
-                authorRepository.Update(author);
+                authorRepository.Add(author);
                 return RedirectToAction(nameof(Index));
             }
             catch

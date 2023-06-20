@@ -16,6 +16,7 @@ namespace BookStroe.Models.Repositories
         public void Add(Author entity)
         {
             db.Authors.Add(entity);
+            db.SaveChanges();
         }
 
         public void Add(Book book)
@@ -27,6 +28,7 @@ namespace BookStroe.Models.Repositories
         {
             var author = Find(id);
             db.Authors.Remove(author);
+            db.SaveChanges();
         }
 
 
@@ -43,43 +45,15 @@ namespace BookStroe.Models.Repositories
 
         public IList<Author> List()
         {
-            return Authors;
+            return db.Authors.ToList();
         }
 
         public void Update(int id, Author newAuthor)
         {
-            var author = Find(id);
-            author.FullName = newAuthor.FullName;
+            db.Update(newAuthor);
+            db.SaveChanges();
         }
 
-        public void Update(Author entity, int bookId)
-        {
-            throw new NotImplementedException();
-        }
-
-        public void Update(int bookId, Book book)
-        {
-            throw new NotImplementedException();
-        }
-
-        public void ViewModel(Book book)
-        {
-            throw new NotImplementedException();
-        }
-
-        public void Update(Author author)
-        {
-            throw new NotImplementedException();
-        }
-
-        public void viewModel(Book book)
-        {
-            throw new NotImplementedException();
-        }
-
-        public void Update(Book book)
-        {
-            throw new NotImplementedException();
-        }
+       
     }
 }

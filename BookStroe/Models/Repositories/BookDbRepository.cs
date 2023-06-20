@@ -3,6 +3,7 @@ using BookStore.Models;
 using System.Collections.Generic;
 using System;
 using System.Linq;
+using Microsoft.EntityFrameworkCore;
 
 namespace BookStroe.Models.Repositories
 {
@@ -20,7 +21,7 @@ namespace BookStroe.Models.Repositories
         }
         public Book Find(int id)
         {
-            var book = db.Books.SingleOrDefault(x => x.Id == id);
+            var book = db.Books.Include(a => a.Author).SingleOrDefault(x => x.Id == id);
             return book;
         }
 
@@ -35,7 +36,7 @@ namespace BookStroe.Models.Repositories
 
         public IList<Book> List()
         {
-            return db.Books.ToList();
+            return db.Books.Include(a=>a.Author).ToList();
         }
 
         public void UpdateById(Book entity)
@@ -51,42 +52,7 @@ namespace BookStroe.Models.Repositories
 
         }
 
-        public void Update(int id, Author author)
-        {
-            throw new NotImplementedException();
-        }
-
-        public Author Find(string authorId)
-        {
-            throw new NotImplementedException();
-        }
-
-
-
-        public void Update(Author author)
-        {
-            throw new NotImplementedException();
-        }
-
-        public void ViewModel(Book book)
-        {
-            throw new NotImplementedException();
-        }
-
-        public void viewModel(Book book)
-        {
-            throw new NotImplementedException();
-        }
-
-        public void Update(Book book)
-        {
-            throw new NotImplementedException();
-        }
-
-        public void Update(Book entity, int bookId)
-        {
-            throw new NotImplementedException();
-        }
+     
     }
 }
 

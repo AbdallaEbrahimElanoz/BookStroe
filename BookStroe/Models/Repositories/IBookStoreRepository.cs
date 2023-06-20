@@ -7,13 +7,8 @@ namespace BookStore.Models.Repositories
     {
         IList<TEntity> List();
         TEntity Find(int id);
+        void Add(TEntity entity);
+        void Update(int id, TEntity entity);
         void Delete(int id);
-        void Update(TEntity entity, int bookId);
-        void Update(int id, Author author);
-        Author Find(string authorId);
-        void Update(int bookId, Book book);
-        void Update(Book book);
-        void Update(Author author);
-        void Add(Book book);
     }
 }
