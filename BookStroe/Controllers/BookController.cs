@@ -30,6 +30,7 @@ namespace BookStore.Controllers
             var books = bookRepository.List();
             return View(books);
         }
+     
 
         // GET: BookController/Details/5
         public ActionResult Details(int id)

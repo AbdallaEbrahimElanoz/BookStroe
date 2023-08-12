@@ -29,12 +29,12 @@ namespace BookStore
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-           // services.AddMvc();
+            // services.AddMvc();
             services.AddScoped<IBookStoreRepository<Author>, AuthorDbRepository>();
             services.AddScoped<IBookStoreRepository<Book>, BookDbRepository>();
             services.AddDbContext<BookstoreDbContext>(options =>
             {
-                options.UseSqlServer(Configuration.GetConnectionString("sqlCon"));
+                options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection"));
             }
             );
             services.Configure<CookiePolicyOptions>(options =>
